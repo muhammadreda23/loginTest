@@ -25,6 +25,13 @@ public class openBroswer {
         driver.findElement(By.id("password")).sendKeys("SuperSecretPassword!");
         driver.findElement(By.cssSelector("button[class=\"radius\"][type=\"submit\"]")).click();
     }
+    @Test(priority = 3)
+    public void wrongCredentials()
+    {
+        driver.findElement(By.cssSelector("input[type=\"text\"]")).sendKeys("gdijohsdfg");
+        driver.findElement(By.id("password")).sendKeys("dfikohofdghsdf");
+        driver.findElement(By.cssSelector("button[class=\"radius\"]")).click();
+    }
     @AfterMethod
     public void quit() throws InterruptedException {
         Thread.sleep(2000);
