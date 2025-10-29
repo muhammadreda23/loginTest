@@ -1,13 +1,14 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class openBroswer {
+public class openbroswer {
     WebDriver driver;
     @BeforeMethod
     public void open_browser(){
@@ -22,6 +23,17 @@ public class openBroswer {
         driver.findElement(By.id("username")).sendKeys("tomsmith");
         driver.findElement(By.xpath("//input[@type=\"password\"]")).sendKeys("SuperSecretPassword!");
         driver.findElement(By.cssSelector("button[class=\"radius\"][type=\"submit\"]")).click();
+        //get current url
+        String Currenturl= driver.getCurrentUrl();
+        Assert.assertEquals(Currenturl,"https://the-internet.herokuapp.com/secure");
+        //see text
+        boolean actualMsg=driver.findElement(By.cssSelector("div[id=\"flash\"]")).getText().contains("You logged into a secure area");
+        Assert.assertTrue(actualMsg);
+        // check color
+        String actualColor=driver.findElement(By.cssSelector("div[class=\"flash success\"]")).getCssValue("background-color");
+        Assert.assertEquals(actualColor,"rgba(93, 164, 35, 1)");
+        
+
     }
     @Test(priority = 2)
     public void invalidLogin(){
