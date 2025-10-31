@@ -32,7 +32,9 @@ public class openbroswer {
         // check color
         String actualColor=driver.findElement(By.cssSelector("div[class=\"flash success\"]")).getCssValue("background-color");
         Assert.assertEquals(actualColor,"rgba(93, 164, 35, 1)");
-        
+        // Log out Button is Displayed?
+        boolean logout_button=driver.findElement(By.cssSelector("a[class=\"button secondary radius\"]")).isDisplayed();
+        Assert.assertTrue(logout_button);
 
     }
     @Test(priority = 2)
