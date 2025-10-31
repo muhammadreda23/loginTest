@@ -35,6 +35,9 @@ public class openbroswer {
         // Log out Button is Displayed?
         boolean logout_button=driver.findElement(By.cssSelector("a[class=\"button secondary radius\"]")).isDisplayed();
         Assert.assertTrue(logout_button);
+        // Is Empty Checker
+        boolean actualResult=driver.findElements(By.cssSelector("a[class=\"button secondary radius\"]")).isEmpty();
+        Assert.assertFalse(actualResult);
 
     }
     @Test(priority = 2)
